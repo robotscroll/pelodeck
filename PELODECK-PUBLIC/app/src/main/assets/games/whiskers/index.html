@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body,iframe{margin:0;border:0;width:100%;height:100%;overflow:hidden}iframe{display:block}</style></head><body>
+<div id="splash" style="position:fixed;inset:0;background:white;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10"><img src="reverie-logo.png" alt="Reverie Factory" style="max-width:65vw;max-height:65vh;object-fit:contain"><span style="font:18px sans-serif;color:#222">www.reveriefactory.com</span></div><iframe id="game" src="play.html" title="Whiskers and the Ball"></iframe>
+<script>
+setTimeout(() => document.getElementById("splash").remove(), 2500);
+// The standalone copy keeps its own local leaderboard on this tablet.
+const frame = document.getElementById('game');
+const key = 'pelodeck-whiskers-scores-v1';
+function scores(){try{return JSON.parse(localStorage.getItem(key) || '[]')}catch(e){return []}}
+window.addEventListener('message', event => {
+  if (event.source !== frame.contentWindow || !event.data) return;
+  const msg = event.data;
+  if (msg.type === 'whiskers:list-scores') {
+    frame.contentWindow.postMessage({type:'whiskers:list-scores-result',requestId:msg.requestId,scores:scores().slice(0,20)}, location.origin);
+  } else if (msg.type === 'whiskers:submit-score') {
+    try {
+      const entry = msg.payload;
+      if (!entry || typeof entry.displayName !== 'string' || !Number.isFinite(entry.score)) throw Error('Invalid score');
+      const list = scores(); list.push({displayName:entry.displayName.slice(0,24),score:entry.score,level:entry.level,cat:entry.cat,bossSurvived:!!entry.bossSurvived});
+      list.sort((a,b)=>b.score-a.score); localStorage.setItem(key, JSON.stringify(list.slice(0,100)));
+      frame.contentWindow.postMessage({type:'whiskers:submit-score-result',requestId:msg.requestId,ok:true}, location.origin);
+    } catch (e) { frame.contentWindow.postMessage({type:'whiskers:submit-score-result',requestId:msg.requestId,ok:false,error:'Could not save score on this tablet.'}, location.origin); }
+  }
+});
+</script></body></html>

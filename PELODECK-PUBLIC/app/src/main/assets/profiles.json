@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rider 1",
+    "weightKg": 75,
+    "profileImageUri": "asset:///avatars/avatar_1.png",
+    "preferredSkin": "winamp",
+    "preferredUnits": "IMPERIAL"
+  },
+  {
+    "name": "Rider 2",
+    "weightKg": 45,
+    "profileImageUri": "asset:///avatars/avatar_cinnamoroll.png",
+    "preferredSkin": "cinnamoroll",
+    "preferredUnits": "IMPERIAL"
+  },
+  {
+    "name": "Rider 3",
+    "weightKg": 75,
+    "profileImageUri": "asset:///avatars/avatar_1.png",
+    "preferredSkin": "winamp",
+    "preferredUnits": "IMPERIAL"
+  }
+]
