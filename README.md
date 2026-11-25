@@ -14,11 +14,13 @@ Hardware support varies by device and firmware. Speed, distance and calories are
 
 [Download the PeloDeck test APK](https://github.com/robotscroll/pelodeck/releases/download/v0.1.0-test/PeloDeck-public-debug.apk) or see the [test release](https://github.com/robotscroll/pelodeck/releases/tag/v0.1.0-test).
 
-This is an early **debug test build**. It has passed build and unit tests but has not completed device or security testing. Install it over an existing compatible build to preserve app data. Updates require the same application ID and signing key. Browser sign-ins are shared across rider profiles.
+This public APK is an early **debug test build**. PeloDeck received a source-level security review, and the browser was hardened to require HTTPS, block mixed content and external app links, and avoid logging full URLs. The build passed unit tests. The review did not cover every dependency or verify this specific APK on a bike, so further device and security testing is needed.
+
+The test build includes hardware diagnostics to help investigate connectivity to the bike's sensor service, along with Android debug-build capabilities. On compatible bikes, the app reads cadence, resistance and output from the Peloton sensor service. Install it over an existing compatible build to preserve app data. Updates require the same application ID and signing key. Browser sign-ins are shared across rider profiles.
 
 ## Build and install
 
-Open the project in Android Studio, configure the local Android SDK, and build the debug variant using `gradlew assembleDebug`. The APK appears under `app/build/outputs/apk/debug/`. Install updates over the existing app to retain its data. Release builds require your own signing configuration and security review.
+Open the project in Android Studio, configure the local Android SDK, and build the debug variant using `gradlew assembleDebug`. The APK appears under `app/build/outputs/apk/debug/`. Install updates over the existing app to retain its data. Release builds require your own signing configuration and further security testing.
 
 Select PeloDeck as the system Home app if you want it to act as the launcher. System Settings remains accessible from the launcher. Profiles, themes and bookmarks can be managed in the app. Class Select opens YouTube searches in the browser. Fullscreen video displays a compact ride metrics ribbon.
 
@@ -38,4 +40,4 @@ The hardware service integration incorporates material from OpenRide. See OPENRI
 
 ## Limitations
 
-PeloDeck is an independent project and is not affiliated with Peloton. Hardware and video playback depend on device firmware and website behavior. Bike firmware and system WebView security updates are provided by the device or WebView vendor. The project requires further device and security testing before public distribution.
+PeloDeck is an independent project and is not affiliated with Peloton. Hardware and video playback depend on device firmware and website behavior. Bike firmware and system WebView security updates are provided by the device or WebView vendor. Further device and security testing is planned for the public APK.
