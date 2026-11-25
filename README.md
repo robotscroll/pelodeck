@@ -10,6 +10,12 @@ PeloDeck is an Android cycling dashboard and launcher for compatible Peloton tab
 
 Hardware support varies by device and firmware. Speed, distance and calories are estimates. Verify measurements against your bike before relying on them.
 
+## Download
+
+[Download the PeloDeck test APK](https://github.com/robotscroll/pelodeck/releases/download/v0.1.0-test/PeloDeck-public-debug.apk) or see the [test release](https://github.com/robotscroll/pelodeck/releases/tag/v0.1.0-test).
+
+This is an early **debug test build**. It has passed build and unit tests but has not completed device or security testing. Install it over an existing compatible build to preserve app data. Updates require the same application ID and signing key. Browser sign-ins are shared across rider profiles.
+
 ## Build and install
 
 Open the project in Android Studio, configure the local Android SDK, and build the debug variant using `gradlew assembleDebug`. The APK appears under `app/build/outputs/apk/debug/`. Install updates over the existing app to retain its data. Release builds require your own signing configuration and security review.
